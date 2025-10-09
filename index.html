@@ -5,134 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CTRLPHANTOM™ | Coming Soon</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
     body {
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      color: #fff;
-      background: url('logo.png') no-repeat center center/cover; /* logo.png */
-      background-attachment: fixed;
-      position: relative;
-      overflow: hidden;
+      height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; color: #fff; background: url('logo.png') no-repeat center center/cover;
+      background-attachment: fixed; position: relative; overflow: hidden;
     }
-
-    /* Add a semi-transparent overlay for better contrast */
-    body::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 1;
-    }
-
-    h1, p, form, footer {
-      position: relative;
-      z-index: 2;
-    }
-
-    h1 {
-      font-size: 3rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-
-    h1 span {
-      color: #b300ff;
-      text-shadow: 0 0 10px #b300ff, 0 0 20px #b300ff;
-    }
-
-    p {
-      font-size: 1.2rem;
-      color: #ccc;
-    }
-
-    form {
-      margin-top: 2rem;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
+    body::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.7); z-index: 1; }
+    h1, p, form, footer { position: relative; z-index: 2; }
+    h1 { font-size: 3rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; }
+    h1 span { color: #b300ff; text-shadow: 0 0 10px #b300ff, 0 0 20px #b300ff; }
+    p { font-size: 1.2rem; color: #ccc; }
+    form { margin-top: 2rem; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
     input[type="email"] {
-      padding: 0.8rem 1rem;
-      border: 1px solid #b300ff;
-      border-radius: 5px;
-      background: transparent;
-      color: #fff;
-      outline: none;
-      width: 250px;
+      padding: 0.8rem 1rem; border: 1px solid #b300ff; border-radius: 5px; background: transparent;
+      color: #fff; outline: none; width: 250px;
     }
-
-    input[type="email"]::placeholder {
-      color: #aaa;
-    }
-
+    input[type="email"]::placeholder { color: #aaa; }
     button {
-      padding: 0.8rem 1.5rem;
-      background-color: #b300ff;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      text-transform: uppercase;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
+      padding: 0.8rem 1.5rem; background-color: #b300ff; color: #fff; border: none; border-radius: 5px;
+      text-transform: uppercase; font-weight: bold; cursor: pointer; transition: 0.3s;
     }
-
-    button:hover {
-      background-color: #fff;
-      color: #b300ff;
-    }
-
-    footer {
-      position: absolute;
-      bottom: 20px;
-      font-size: 0.9rem;
-      color: #888;
-      z-index: 2;
-    }
-
+    button:hover { background-color: #fff; color: #b300ff; }
+    .consent { display: flex; align-items: center; gap: 8px; color: #bbb; font-size: 0.9rem; margin-top: 8px; }
+    .consent a { color: #ccc; text-decoration: underline; }
+    footer { position: absolute; bottom: 20px; font-size: 0.9rem; color: #888; z-index: 2; }
     @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-      p {
-        font-size: 1rem;
-      }
-      form {
-        flex-direction: column;
-      }
-      button {
-        width: 100%;
-      }
+      h1 { font-size: 2rem; } p { font-size: 1rem; } form { flex-direction: column; } button { width: 100%; }
     }
   </style>
 </head>
 <body>
   <h1>CTRLPHANTOM<span>™</span></h1>
-  <p> Drop 001 is coming soon. Enter your email for 25% off.</p>
+  <p>Drop 001 is coming soon. Enter your email for 25% off.</p>
 
-  <form action="https://formspree.io/f/your-form-id" method="POST">
-    <input type="email" name="email" placeholder="Enter your email" required />
+  <!-- Netlify Forms: working email capture -->
+  <form name="drop-001" method="POST" action="/thanks" data-netlify="true" data-netlify-honeypot="bot-field">
+    <!-- Required hidden form-name field -->
+    <input type="hidden" name="form-name" value="drop-001" />
+
+    <!-- Honeypot field (hidden to humans) -->
+    <div style="position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;">
+      <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+    </div>
+
+    <input type="email" name="email" placeholder="Enter your email" required aria-label="Email address" />
+    <div class="consent">
+      <input type="checkbox" id="consent" name="consent" required />
+      <label for="consent">I agree to receive updates and promotional emails. See our <a href="/privacy">Privacy Policy</a>.</label>
+    </div>
     <button type="submit">Join the Drop</button>
   </form>
-  
- <p>Control the unseen.</p>
+
+  <p>Control the unseen.</p>
   <footer>© 2025 CTRLPHANTOM LTD. All rights reserved.</footer>
 </body>
 </html>
