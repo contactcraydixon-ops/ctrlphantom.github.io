@@ -25,8 +25,7 @@
       align-items:center;
       text-align:center;
       color:var(--fg);
-      background:url('logo.png') no-repeat center center/contain;
-      background-size:cover;
+      background:url('logo.png') no-repeat center center/cover;
       background-attachment:fixed;
       position:relative;
       overflow:hidden;
@@ -125,12 +124,15 @@
       z-index:2;
     }
 
+    /* --- MOBILE VERSION --- */
     @media (max-width:768px){
       body{
         background-attachment:scroll;
-        background-image:url('logo-mobile.jpg'); /* optional smaller image */
-        background-size:cover;
+        /* Use mobile image first, fallback to original if not found */
+        background-image: url("untitled%20design.png"), url("logo.png");
+        background-repeat:no-repeat;
         background-position:center;
+        background-size:cover;
       }
 
       h1{font-size:2rem;}
