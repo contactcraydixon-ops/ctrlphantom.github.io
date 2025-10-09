@@ -9,201 +9,157 @@
   <meta name="theme-color" content="#0b0b0b" />
   <title>CTRLPHANTOM™ | Coming Soon</title>
   <style>
-    /* ===== Base / Reset ===== */
     :root{
-      --bg: #0b0b0b;
+      --accent: #b300ff;
       --fg: #ffffff;
       --muted: #cccccc;
-      --muted-2:#aaaaaa;
-      --accent:#b300ff;
-      --accent-ghost: rgba(179,0,255,0.6);
-      --radius: 12px;
-      --space: clamp(12px, 2vw, 20px);
-      --maxw: 720px;
+      --bg-overlay: rgba(0, 0, 0, 0.7);
     }
-    *{ box-sizing: border-box; }
-    html { -webkit-text-size-adjust: 100%; }
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
     body{
-      margin:0;
-      min-height: 100svh; /* safer on mobile */
+      height:100vh;
       display:flex;
       flex-direction:column;
-      align-items:center;
       justify-content:center;
+      align-items:center;
       text-align:center;
-      color: var(--fg);
-      background: var(--bg) center/cover no-repeat fixed;
-      /* default desktop bg */
-      background-image: url("logo.png");
-      position: relative;
+      color:var(--fg);
+      background:url('logo.png') no-repeat center center/contain;
+      background-size:cover;
+      background-attachment:fixed;
+      position:relative;
       overflow:hidden;
-      padding: calc(env(safe-area-inset-top, 0) + 16px) var(--space)
-               calc(env(safe-area-inset-bottom, 0) + 16px);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
-                   "Apple Color Emoji","Segoe UI Emoji";
-      line-height: 1.35;
     }
-    /* Softer overlay for contrast */
+
     body::before{
       content:"";
-      position:absolute; inset:0;
-      background: rgba(0,0,0,0.68);
+      position:absolute;
+      inset:0;
+      background:var(--bg-overlay);
       z-index:1;
-      backdrop-filter: saturate(110%) blur(0.5px);
     }
-    main, footer{ position:relative; z-index:2; }
 
-    /* ===== Typography ===== */
+    h1, p, form, footer{
+      position:relative;
+      z-index:2;
+    }
+
     h1{
-      font-size: clamp(28px, 6vw, 48px);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 0.6rem;
+      font-size:clamp(2rem,6vw,3rem);
+      letter-spacing:2px;
+      text-transform:uppercase;
+      margin-bottom:1rem;
     }
+
     h1 span{
-      color: var(--accent);
-      text-shadow: 0 0 8px var(--accent), 0 0 16px var(--accent);
-    }
-    p.lead{
-      font-size: clamp(14px, 3.6vw, 19px);
-      color: var(--muted);
-      margin: 0 auto;
-      max-width: var(--maxw);
+      color:var(--accent);
+      text-shadow:0 0 10px var(--accent),0 0 20px var(--accent);
     }
 
-    /* ===== Form ===== */
+    p{
+      font-size:clamp(1rem,3.2vw,1.2rem);
+      color:var(--muted);
+      max-width:90%;
+      margin:0 auto;
+    }
+
     form{
-      margin-top: clamp(16px, 4vw, 24px);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 10px;
-      width: min(560px, 100%);
-      justify-items: stretch;
-      align-items: center;
-    }
-    /* stack on tablets/phones */
-    @media (max-width: 768px){
-      form{ grid-template-columns: 1fr; }
+      margin-top:2rem;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+      max-width:90%;
     }
 
-    /* Accessible, full-width input */
-    .visually-hidden{
-      position:absolute !important;
-      width:1px;height:1px;
-      padding:0;margin:-1px;
-      overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
-    }
     input[type="email"]{
-      width:100%;
-      padding: 14px 16px;
-      border: 1px solid var(--accent);
-      border-radius: var(--radius);
-      background: rgba(255,255,255,0.04);
-      color: var(--fg);
-      outline: none;
-      font-size: 16px; /* avoid iOS zoom */
+      padding:0.8rem 1rem;
+      border:1px solid var(--accent);
+      border-radius:5px;
+      background:transparent;
+      color:#fff;
+      outline:none;
+      width:250px;
+      max-width:100%;
     }
-    input[type="email"]::placeholder{ color: var(--muted-2); }
+
+    input[type="email"]::placeholder{color:#aaa;}
 
     button{
-      width: 100%;
-      padding: 14px 18px;
-      border: none;
-      border-radius: var(--radius);
-      text-transform: uppercase;
-      font-weight: 700;
-      cursor: pointer;
-      background: var(--accent);
-      color: #fff;
-      min-height: 48px; /* nice tap target */
-      transition: transform 120ms ease, background-color 200ms ease, color 200ms ease;
+      padding:0.8rem 1.5rem;
+      background-color:var(--accent);
+      color:#fff;
+      border:none;
+      border-radius:5px;
+      text-transform:uppercase;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
     }
-    button:hover{ background:#fff; color: var(--accent); }
-    button:active{ transform: translateY(1px) scale(0.99); }
-    input:focus-visible, button:focus-visible, a:focus-visible{
-      outline: 3px solid var(--accent-ghost);
-      outline-offset: 2px;
-      border-radius: calc(var(--radius) + 2px);
+
+    button:hover{
+      background-color:#fff;
+      color:var(--accent);
     }
 
     .consent{
-      display:flex; gap:8px; align-items:flex-start;
-      color:#bbb; font-size: 0.95rem; text-align:left;
-      margin: 6px 0 0;
+      display:flex;
+      align-items:flex-start;
+      gap:8px;
+      color:#bbb;
+      font-size:0.9rem;
+      text-align:left;
+      margin-top:8px;
+      max-width:320px;
+      margin-inline:auto;
     }
-    .consent a{ color:#ddd; text-decoration: underline; }
+
+    .consent a{color:#ccc;text-decoration:underline;}
 
     footer{
-      margin-top: clamp(12px, 5vw, 28px);
-      color:#888; font-size: 0.9rem;
+      position:absolute;
+      bottom:20px;
+      font-size:0.9rem;
+      color:#888;
+      z-index:2;
     }
 
-    /* ===== Mobile background + performance tweaks ===== */
-    @media (max-width: 768px){
-      /* avoid janky fixed backgrounds on mobile */
-      body{ background-attachment: scroll; }
-      /* optionally swap to a lighter mobile image if you add it */
-      /* body { background-image: url("logo-mobile.jpg"); } */
-    }
+    @media (max-width:768px){
+      body{
+        background-attachment:scroll;
+        background-image:url('logo-mobile.jpg'); /* optional smaller image */
+        background-size:cover;
+        background-position:center;
+      }
 
-    /* ===== Respect reduced motion ===== */
-    @media (prefers-reduced-motion: reduce){
-      *{ animation: none !important; transition: none !important; }
+      h1{font-size:2rem;}
+      p{font-size:1rem;}
+      form{flex-direction:column;}
+      button{width:100%;}
     }
   </style>
 </head>
 <body>
-  <main>
-    <h1>CTRLPHANTOM<span>™</span></h1>
-    <p class="lead">Drop 001 is coming soon. Enter your email for 25% off.</p>
+  <h1>CTRLPHANTOM<span>™</span></h1>
+  <p>Drop 001 is coming soon. Enter your email for 25% off.</p>
 
-    <!-- Netlify Forms (working) -->
-    <form
-      name="drop-001"
-      method="POST"
-      action="/thanks"
-      data-netlify="true"
-      data-netlify-honeypot="bot-field"
-    >
-      <!-- Required hidden field -->
-      <input type="hidden" name="form-name" value="drop-001" />
+  <form name="drop-001" method="POST" action="/thanks" data-netlify="true" data-netlify-honeypot="bot-field">
+    <input type="hidden" name="form-name" value="drop-001" />
 
-      <!-- Spam honeypot -->
-      <div class="visually-hidden" aria-hidden="true">
-        <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
-      </div>
+    <div style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+      <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+    </div>
 
-      <label for="email" class="visually-hidden">Email address</label>
-      <input
-        id="email"
-        type="email"
-        name="email"
-        placeholder="Enter your email"
-        required
-        inputmode="email"
-        autocomplete="email"
-        aria-label="Email address"
-      />
+    <input type="email" name="email" placeholder="Enter your email" required />
+    <div class="consent">
+      <input type="checkbox" id="consent" name="consent" required />
+      <label for="consent">I agree to receive updates and promotional emails. See our <a href="/privacy">Privacy Policy</a>.</label>
+    </div>
+    <button type="submit">Join the Drop</button>
+  </form>
 
-      <button type="submit" aria-label="Join the Drop">Join the Drop</button>
-
-      <div class="consent">
-        <input type="checkbox" id="consent" name="consent" required />
-        <label for="consent">
-          I agree to receive updates and promotional emails. See our
-          <a href="/privacy">Privacy Policy</a>.
-        </label>
-      </div>
-    </form>
-
-    <p class="lead" style="margin-top: 12px;">Control the unseen.</p>
-  </main>
-
+  <p>Control the unseen.</p>
   <footer>© 2025 CTRLPHANTOM LTD. All rights reserved.</footer>
-
-  <script>
-    // Optional: client-side success fallback if you decide to use AJAX later.
-    // For now, Netlify handles submission + redirect to /thanks.
-  </script>
 </body>
 </html>
