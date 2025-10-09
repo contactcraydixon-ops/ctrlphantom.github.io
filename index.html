@@ -39,7 +39,7 @@
       z-index:1;
     }
 
-    h1, p, form, footer{
+    h1, p, form, footer, .consent-wrapper{
       position:relative;
       z-index:2;
     }
@@ -102,6 +102,11 @@
       color:var(--accent);
     }
 
+    .consent-wrapper{
+      margin-top:1.5rem;
+      max-width:340px;
+    }
+
     .consent{
       display:flex;
       align-items:flex-start;
@@ -109,9 +114,6 @@
       color:#bbb;
       font-size:0.9rem;
       text-align:left;
-      margin-top:8px;
-      max-width:320px;
-      margin-inline:auto;
     }
 
     .consent a{color:#ccc;text-decoration:underline;}
@@ -128,7 +130,6 @@
     @media (max-width:768px){
       body{
         background-attachment:scroll;
-        /* Use mobile image first, fallback to original if not found */
         background-image: url("untitled%20design.png"), url("logo.png");
         background-repeat:no-repeat;
         background-position:center;
@@ -139,6 +140,7 @@
       p{font-size:1rem;}
       form{flex-direction:column;}
       button{width:100%;}
+      .consent-wrapper{max-width:90%; margin-top:1rem;}
     }
   </style>
 </head>
@@ -154,14 +156,21 @@
     </div>
 
     <input type="email" name="email" placeholder="Enter your email" required />
-    <div class="consent">
-      <input type="checkbox" id="consent" name="consent" required />
-      <label for="consent">I agree to receive updates and promotional emails. See our <a href="/privacy">Privacy Policy</a>.</label>
-    </div>
     <button type="submit">Join the Drop</button>
   </form>
 
   <p>Control the unseen.</p>
+
+  <div class="consent-wrapper">
+    <div class="consent">
+      <input type="checkbox" id="consent" name="consent" required />
+      <label for="consent">
+        I agree to receive updates and promotional emails. See our
+        <a href="/privacy">Privacy Policy</a>.
+      </label>
+    </div>
+  </div>
+
   <footer>© 2025 CTRLPHANTOM LTD. All rights reserved.</footer>
 </body>
 </html>
